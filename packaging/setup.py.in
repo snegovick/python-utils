@@ -18,10 +18,10 @@ setup(
     keywords = "utility, log",
     url = "http://snegovick.me",
     packages=['utils'],
-    scripts=[''],
+    scripts=[],
     long_description=read('README.md'),
-    dependency_links = [''],
-    install_requires = [''],
+    dependency_links = [],
+    install_requires = [],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Utilities",

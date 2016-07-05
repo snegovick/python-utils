@@ -4,7 +4,7 @@ echo "======================"
 echo "Modifying setup.py"
 echo "======================"
 
-VSTRING=$(git describe --tags --long | sed -e "s/v//")
+VSTRING=$( cat ./packaging/version )
 echo "VSTRING: ${VSTRING}"
 sed -r -e "s/( *)version =/\1version = \"${VSTRING}\",/" ./packaging/setup.py.in > setup.py
 
@@ -12,7 +12,9 @@ echo "======================"
 echo "Modifying stdeb.cfg"
 echo "======================"
 
-cp ./packaging/stdeb.cfg ./stdeb.cfg
+DEB_VERSION=$( cat ./packaging/dev-version )
+LSB_RELEASE=$( lsb_release -r | sed -e "s/Release:\t*//")
+sed -e "s/Debian-Version:/Debian-Version: ${DEV_VERSION}/" ./packaging/stdeb.cfg.in | sed -e "s/suite:/suite: ${LSB_RELEASE}/" > ./stdeb.cfg
 
 echo "======================"
 echo "Building package"
@@ -23,5 +25,3 @@ python ./setup.py --command-packages=stdeb.command sdist_dsc --suite="testing"
 cd ./deb_dist/python-utils-${VSTRING}
 debuild
 cd ../../
-
-
