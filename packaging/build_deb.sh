@@ -22,6 +22,6 @@ echo "======================"
 
 rm -rf deb_dist
 python ./setup.py --command-packages=stdeb.command sdist_dsc --suite="${LSB_RELEASE}"
-cd ./deb_dist/python-utils-${VSTRING}
+pushd ./deb_dist/utils-${VSTRING}
 debuild
-cd ../../
+popd
