@@ -31,6 +31,9 @@ class ULog(object):
     def set_level(self, level):
         self.level = (level if (level>0 and level<=3) else 0)
 
+    def set_outputs(self, outputs):
+        self.outputs = outputs
+
     def __append_truncate(self):
         if self.messages_depth != 0:
             self.messages.append(message)

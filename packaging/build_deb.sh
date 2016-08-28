@@ -14,7 +14,7 @@ echo "Modifying stdeb.cfg"
 echo "======================"
 
 DEB_VERSION=$( cat ./packaging/deb-version )
-LSB_RELEASE=$( lsb_release -a | grep "Codename" | sed -e "s/Codename:\t*//")
+LSB_RELEASE=$( lsb_release -rs )
 sed -e "s/Debian-Version:/Debian-Version: ${DEB_VERSION}/" ./packaging/stdeb.cfg.in | sed -e "s/suite:/suite: ${LSB_RELEASE}/" > ./stdeb.cfg
 
 echo "======================"
